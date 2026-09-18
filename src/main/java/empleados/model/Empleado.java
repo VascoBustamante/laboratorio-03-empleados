@@ -17,15 +17,24 @@ public class Empleado {
     private String nombre;
     private String email;
     private String rol;
+    private String telefono;
+    private String cargo;
 
+    // Constructor vacío
     public Empleado() {
     }
 
-    public Empleado(String nombre, String email, String rol) {
+    // Constructor con atributos
+    public Empleado(String nombre, String email, String rol,
+                    String telefono, String cargo) {
         this.nombre = nombre;
         this.email = email;
         this.rol = rol;
+        this.telefono = telefono;
+        this.cargo = cargo;
     }
+
+    // GETTERS Y SETTERS
 
     public Long getId() {
         return id;
@@ -57,5 +66,21 @@ public class Empleado {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 }

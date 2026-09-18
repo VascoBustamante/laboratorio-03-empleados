@@ -3,32 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <title>Empleado</title>
+    <title>Formulario de Empleado</title>
 
     <style>
-
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .container {
-            max-width: 500px;
-            margin: auto;
-            background: white;
-            padding: 30px;
+            background-color: white;
+            padding: 40px;
             border-radius: 10px;
+            width: 450px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         h1 {
             text-align: center;
+            margin-bottom: 30px;
         }
 
         label {
             display: block;
             margin-top: 15px;
+            font-weight: bold;
         }
 
         input, select {
@@ -39,8 +43,9 @@
         }
 
         button {
-            margin-top: 20px;
-            padding: 10px 15px;
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
             background-color: #007bff;
             color: white;
             border: none;
@@ -48,60 +53,67 @@
             cursor: pointer;
         }
 
-        .cancelar {
-            display: inline-block;
-            margin-left: 10px;
+        .volver {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
             text-decoration: none;
+            color: #555;
         }
-
     </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>Empleado</h1>
+    <h1 th:text="${empleado.id == null} ? 'Nuevo Empleado' : 'Editar Empleado'">
+        Empleado
+    </h1>
 
     <form th:action="@{/empleados/guardar}"
           th:object="${empleado}"
           method="post">
 
+        <!-- ID oculto para edición -->
         <input type="hidden" th:field="*{id}">
 
         <label>Nombre:</label>
-
         <input type="text"
                th:field="*{nombre}"
                required>
 
         <label>Email:</label>
-
         <input type="email"
                th:field="*{email}"
                required>
 
         <label>Rol:</label>
-
         <select th:field="*{rol}" required>
-
             <option value="">Seleccione un rol</option>
             <option value="admin">Admin</option>
             <option value="usuario">Usuario</option>
-
         </select>
+
+        <label>Teléfono:</label>
+        <input type="text"
+               th:field="*{telefono}"
+               required>
+
+        <label>Cargo:</label>
+        <input type="text"
+               th:field="*{cargo}"
+               required>
 
         <button type="submit">
             Guardar
         </button>
 
-        <a th:href="@{/empleados}"
-           class="cancelar">
-            Cancelar
-        </a>
-
     </form>
+
+    <a th:href="@{/empleados}" class="volver">
+        Volver
+    </a>
 
 </div>
 
