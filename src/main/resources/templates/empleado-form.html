@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Empleado</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancelar {
+            display: inline-block;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Empleado</h1>
+
+    <form th:action="@{/empleados/guardar}"
+          th:object="${empleado}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label>Nombre:</label>
+
+        <input type="text"
+               th:field="*{nombre}"
+               required>
+
+        <label>Email:</label>
+
+        <input type="email"
+               th:field="*{email}"
+               required>
+
+        <label>Rol:</label>
+
+        <select th:field="*{rol}" required>
+
+            <option value="">Seleccione un rol</option>
+            <option value="admin">Admin</option>
+            <option value="usuario">Usuario</option>
+
+        </select>
+
+        <button type="submit">
+            Guardar
+        </button>
+
+        <a th:href="@{/empleados}"
+           class="cancelar">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>
